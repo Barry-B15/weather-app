@@ -14,9 +14,17 @@ h2 {
     padding: 0.3em;
 }
 
-p {
+p,
+label {
     padding: 0.5em 2em;
     color: rgb(100, 38, 38);
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+#cars {
+    padding: 0.5em;
+    font-size: 1.1em;
 }
 
 button {
