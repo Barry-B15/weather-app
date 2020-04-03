@@ -10,3 +10,6 @@ An app to get the weather at a given place based on the Coding Train Youtude vid
 # Create local db
 * install nedb 
 * create data base and auto save user data to it.
+# Click Listener
+* This commit was used to add a click listener so the use location can only show when user clicks the submit button.
+* There is also an input area for user to add a favorite car
