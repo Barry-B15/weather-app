@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: rgb(238, 235, 235);
+}
+
+h1,
+h2 {
+    color: maroon;
+    text-align: center;
+    padding: 0.3em;
+}
+
+p {
+    padding: 0.5em 2em;
+    color: rgb(100, 38, 38);
+}
+
+button {
+    display: block;
+    padding: 0.4em;
+    margin: 2vh auto;
+    font-size: 2.5vw;
+    height: 6vh;
+    width: 12vw;
+    background: cornflowerblue;
+    border: none;
+    border-radius: 0.3em;
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: crimson;
+    text-align: center;
+}
+
+button:hover {
+    border: 2px solid crimson;
+}
+
+@media (min-width: 680px) {
+    body {
+        background: rgb(145, 228, 248);
+        color: mintcream;
+        font-size: 1.3em;
+        line-height: 1.2em;
+    }
+    h1 {
+        padding: 1em;
+        font-size: 3em;
+    }
+    button {
+        width: 20vw;
+        height: 10vh;
+        font-size: 1.5em;
+        max-width: 25vw;
+    }
+}
