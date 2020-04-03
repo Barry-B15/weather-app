@@ -24,13 +24,17 @@ if ('geolocation' in navigator) {
             body: JSON.stringify(data)
         };
         //6.1 Make fetch await()
-        /* fetch('/api', options).then(response => {
+        /* fetch('/api', options).then(response => {  //5.3 add then()
             console.log(response);
         }); */
         const response = await fetch('/api', options);
         const json = await response.json();
         console.log(json);
     });
+
+    // 7.6 insert user data
+    //database.insert(data);
+    //console.log(database);
 } else {
     console.log('geolocation not available'); // if geolocation is not available
 }
