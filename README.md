@@ -7,3 +7,6 @@ An app to get the weather at a given place based on the Coding Train Youtude vid
  - adds a post request on the server
  - sets it up on the client side
  - Get the data of the POST request and returns it
+# Create local db
+* install nedb 
+* create data base and auto save user data to it.
