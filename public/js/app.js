@@ -1,4 +1,7 @@
-//8. re-arrange
+//9. Get Data
+//9.1 def get data
+getData();
+
 //8.1 def the lat lon
 let lat, lon;
 
@@ -25,6 +28,12 @@ button.addEventListener('click', async event => {
     console.log(json);
 });
 
+//9.2 def the get func
+async function getData() {
+    const response = await fetch('/api'); // fetch the api and store as response
+    const data = await response.json();
+    console.log(data);
+} //now set up the response in the server
 
 //take data (geolocation) from client
 if ('geolocation' in navigator) {
