@@ -2,6 +2,33 @@
 // moved part of the code from app.js
 getData();
 
+//=============== Sort Images =========================
+const selfies = [];
+
+document.getElementById('time').addEventListener('click', event => {
+    sortData((a, b) => b.time - a.time);
+});
+document.getElementById('status').addEventListener('click', event => {
+    sortData((a, b) => {
+        if (b.status > a.status) return -1;
+        else return 1;
+    });
+});
+
+function sortData(compare) {
+    for (let item of selfies) {
+        item.elt.remove();
+    }
+    selfies.sort(compare);
+    for (let item of selfies) {
+        document.body.append(item.elt);
+    }
+}
+//=============== Sort Images End===================
+
+
+
+
 async function getData() {
     const response = await fetch('/api');
     const data = await response.json();
