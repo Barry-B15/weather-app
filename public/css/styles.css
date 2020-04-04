@@ -5,35 +5,48 @@
 
 body {
     background: rgb(238, 235, 235);
-}
-
-h1,
-h2 {
-    color: maroon;
     text-align: center;
-    padding: 0.3em;
 }
 
-p,
-label {
-    padding: 0.5em 2em;
-    color: rgb(100, 38, 38);
+h1 {
+    color: maroon;
+    font-size: large;
+    padding: 0.3em;
+    margin-bottom: 230px;
+}
+
+p {
+    padding: 0.5em 0;
+    color: rgb(15, 15, 15);
     font-size: 1.2em;
     line-height: 1.2em;
 }
 
-#cars {
+video {
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    right: auto;
+}
+
+#status,
+label {
     padding: 0.5em;
     font-size: 1.1em;
 }
 
-button {
+input {
+    width: 40%;
+    min-width: 40vw;
+}
+
+#submit {
     display: block;
-    padding: 0.4em;
     margin: 2vh auto;
+    padding: 2vw;
     font-size: 2.5vw;
     height: 6vh;
-    width: 12vw;
+    width: 20vw;
     background: cornflowerblue;
     border: none;
     border-radius: 0.3em;
@@ -43,11 +56,11 @@ button {
     text-align: center;
 }
 
-button:hover {
+#submit:hover {
     border: 2px solid crimson;
 }
 
-@media (min-width: 680px) {
+@media (min-width: 700px) {
     body {
         background: rgb(145, 228, 248);
         color: mintcream;
@@ -55,13 +68,20 @@ button:hover {
         line-height: 1.2em;
     }
     h1 {
-        padding: 1em;
+        padding: 0.5em;
         font-size: 3em;
     }
-    button {
+    p {
+        padding: 1em;
+        text-align: left;
+    }
+    video {
+        left: 30%;
+        margin-top: 60px;
+    }
+    #submit {
         width: 20vw;
         height: 10vh;
         font-size: 1.5em;
-        max-width: 25vw;
     }
 }
