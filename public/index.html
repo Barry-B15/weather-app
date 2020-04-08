@@ -4,31 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
-    <title>weatherApp</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+    <style>
+        span {
+            font-weight: bold;
+            line-height: 1.3em;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>The Weather App</h1>
+    <h1>The Weather is Here</h1>
+    <div>
+        <a href="/">check in</a> | <a href="/checkins" id="checkin">view checkins</a>
+    </div>
     <p>
-        <a href="/" alt="top page">Home</a> | <a href="logs/index.html" alt="logs page">Photo List</a>
     </p>
+    <p> You are at: <strong>Lat: </strong> <span id="latitude"> </span>°, <strong>Lon: </strong> <span id="longitude"> </span>° near
+        <span id="city"> </span>,
+        <span id="country"> </span>. The weather is <span id="summary"></span> with a temperature of <span id="temperature"></span>° C.
+        <br> The concentration of particulate matter (<span id="aq_parameter"></span>) is
+        <span id="aq_value">NO READING</span> <span id="aq_units"></span> last read on
+        <span id="aq_date"></span>.
+    </p>
+    <script src="js/weather.js"></script>
 
-    <section class="user-info">
-        <p>
-            <strong>Latitude</strong>: <span id="latitude"></span> &deg; <br>
-
-            <strong> Longitude</strong>: <span id="longitude"></span>&deg;
-        </p>
-
-        <label for="status">Enter A Status</label> <br><br>
-        <input id="status" value="Hiking">
-
-        <button id="submit">Submit</button>
-
-    </section>
-    <script src="js/app.js"></script>
 </body>
 
 </html>
