@@ -1,26 +1,19 @@
-console.log('Hi'); //0.0 test the server
-
 const express = require('express'); //1.0
-const app = express(); //2.0
-
-//7. Saving user data to a local db
-const Datastore = require('nedb'); //7.1
+const Datastore = require('nedb');
+const fetch = require('node-fetch');
 
 
-const port = 3000; //3.0
-app.use(express.static('public')); //4.0 the go create a public dir, & create index.html inside it
+const app = express();
+const port = 3000;
+app.listen(port, () => console.log(`Listening at localhost: ${port}`));
 
-app.use(express.json({ limit: '1mb' })); //5.2B ask app to use express.json and add a limit
+app.use(express.static('public'));
+app.use(express.json({ limit: '1mb' }));
 
-app.listen(port, () => console.log(`Listening at localhost: ${port}`)); //3.1
-
-const database = new Datastore('database.db'); //7.2
+const database = new Datastore('database.db');
 database.loadDatabase(); //7.3
 
-//10 set up the request
 app.get('/api', (request, response) => {
-    //response.json({ test: '123' }); //10.1 test that we can get data
-    //10.2 use find() func to get data
     database.find({}, (err, data) => {
         if (err) {
             response.end();
@@ -30,19 +23,55 @@ app.get('/api', (request, response) => {
     });
 });
 
-//5.0 adding post request
 app.post('/api', (request, response) => {
-
-    //5.2A our interest is in the body, let's console log
-    //console.log(request.body);
-
-    //5.3 return the response
     const data = request.body;
-
-    //7.7 add timestamp, Remove the above, add the following and resr=tart server
     const timestamp = Date.now();
     data.timestamp = timestamp;
     database.insert(data);
     response.json(data);
+});
 
-}); //5.1 end: then set it up in app.js
+// get the weather using route parameters :latlon
+app.get('/weather/:latlon', async(request, response) => {
+    console.log('request: ', request.params);
+
+    try {
+        // split the request result along the comma and store as latlon
+        const latlon = request.params.latlon.split('&');
+        const lat = latlon[0]; // store 1st index is lat
+        const lon = latlon[1]; // store 2nd index as lon
+        console.log('lat-lon: ', lat, lon);
+
+        //# add the api key/url : from 1st api - openweathermap
+        const weather_url = `1st api key here `; //openweathermap api
+
+        //make a get request to that api url 
+        const weather_response = await fetch(weather_url); // make sure the async keyword is added to the func above
+        const weather_data = await weather_response.json();
+        //response.json(json)
+        //console.log(data);
+
+        //weather2: get the airquality from the 2nd api - openairQuality api
+        const aq_url = `2nd api key here`;
+
+        //# make a get request to that api url
+        const aq_response = await fetch(aq_url); // make sure the async keyword is added to the func above
+        const aq_data = await aq_response.json();
+
+        //data now 
+        const data = {
+            weather: weather_data,
+            aq_data: aq_data
+        };
+        //response.json(json)
+        //console.log(json);
+        response.json(data);
+        console.log(data);
+        // go change the way we get weather in weather.js and add for air quality in weather.js
+        //next();
+
+    } catch (error) {
+        //next(error);
+        console.error(error);
+    }
+});
