@@ -4,11 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>weatherApp</title>
+    <title>Document</title>
+    <style>
+        span {
+            font-weight: bold;
+            line-height: 1.3em;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>The Weather Here</h1>
+    <h1>The Weather is Here</h1>
+    <div>
+        <a href="/">check in</a> | <a href="/checkins" id="checkin">view checkins</a>
+    </div>
+    <p>
+    </p>
+    <p> You are at: <strong>Lat: </strong> <span id="latitude"> </span>°, <strong>Lon: </strong> <span id="longitude"> </span>° near
+        <span id="city"> </span>,
+        <span id="country"> </span>. The weather is <span id="summary"></span> with a temperature of <span id="temperature"></span>° C.
+        <br> The concentration of particulate matter (<span id="aq_parameter"></span>) is
+        <span id="aq_value">NO READING</span> <span id="aq_units"></span> last read on
+        <span id="aq_date"></span>.
+    </p>
+    <script src="js/weather.js"></script>
+
 </body>
 
 </html>
