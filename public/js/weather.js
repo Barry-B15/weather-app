@@ -6,6 +6,7 @@ if ('geolocation' in navigator) {
 
     //get current position
     navigator.geolocation.getCurrentPosition(async position => {
+        let lat, lon, weather, air; // def the variables
         try {
             //def lat lon and get the coords
             lat = position.coords.latitude;
@@ -21,8 +22,8 @@ if ('geolocation' in navigator) {
             console.log(json);
 
             //weather2:New location data // city, country, temp and weather from openWeather api 
-            const weather = json.weather;
-            const air = json.aq_data.results[0].measurements[0];
+            weather = json.weather;
+            air = json.aq_data.results[0].measurements[0];
             // must look at the node of devtool console / air_quality from video didnt work, devtool helped (weather or aq_data worked)
             document.getElementById('summary').textContent = weather.weather[0].description;
             document.getElementById('temperature').textContent = weather.main.temp;
@@ -37,31 +38,33 @@ if ('geolocation' in navigator) {
 
         } catch (error) {
             //console.error(error);
+            air = { value: -1 }; // if there's no value for air // go to log and put the text to display
             console.log('Something went wrong: Needs Fixing');
             //or 
             //document.getElementById('aq_value').textContent = 'No READING';
         }
 
+        //move the save to db here so that no matter what, air will always be stored in db
+        // then hard code -1 in the error section
+        //Uncomment later 04/14
+        const data = {
+            lat,
+            lon,
+            weather,
+            air
+        };
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application-json'
+            },
+            body: JSON.stringify(data)
+        };
+        const db_response = await fetch('api', options);
+        const db_json = await db_response.json();
+        console.log(db_json);
+
     });
 } else {
     console.log('geolocation not available'); // if geolocation is not available
 }
-
-//8.1 def the lat lon
-
-//def the btn and add click listener
-const button = document.getElementById('checkin');
-button.addEventListener('click', async event => {
-
-    const data = { lat, lon };
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    };
-    const response = await fetch('api', options);
-    const json = await response.json();
-    console.log(json);
-});

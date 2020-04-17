@@ -2,10 +2,14 @@ const express = require('express'); //1.0
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
 
+require('dotenv').config(); //1. to hide api_key; (after installing dotenv) require env 
+
+//console.log(process.env); //1.2// log and see that it is added
+
 
 const app = express();
-const port = 3000;
-app.listen(port, () => console.log(`Listening at localhost: ${port}`));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Starting server at: ${port}`));
 
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
@@ -36,14 +40,21 @@ app.get('/weather/:latlon', async(request, response) => {
     console.log('request: ', request.params);
 
     try {
-        // split the request result along the comma and store as latlon
+        // split the request result along the & and store as latlon
         const latlon = request.params.latlon.split('&');
+        console.log(latlon);
         const lat = latlon[0]; // store 1st index is lat
         const lon = latlon[1]; // store 2nd index as lon
         console.log('lat-lon: ', lat, lon);
 
-        //# add the api key/url : from 1st api - openweathermap
-        const weather_url = `1st api key here `; //openweathermap api
+        //define api_key
+        const api_key = process.env.API_KEY; //3. move the key into .env file and call it here
+        //const api_key = 'xxxxxx'; // above should replace this but its not working
+
+        //# add the api key/url : from 1st api - openweathermap                                     use the api_key here
+        const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`; //openweathermap api
+
+
 
         //make a get request to that api url 
         const weather_response = await fetch(weather_url); // make sure the async keyword is added to the func above
@@ -52,16 +63,16 @@ app.get('/weather/:latlon', async(request, response) => {
         //console.log(data);
 
         //weather2: get the airquality from the 2nd api - openairQuality api
-        const aq_url = `2nd api key here`;
-
+        const aq_url = `https://api.openaq.org/v1/latest?coordinates=${lat}&lon=${lon}`;
         //# make a get request to that api url
         const aq_response = await fetch(aq_url); // make sure the async keyword is added to the func above
         const aq_data = await aq_response.json();
 
+
         //data now 
         const data = {
             weather: weather_data,
-            aq_data: aq_data
+            aq_data: aq_data //aq_data on the left is air_quality as used on the api devtool
         };
         //response.json(json)
         //console.log(json);

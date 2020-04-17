@@ -4,10 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--To add map 1. go to leaflet.js website, copy/paste this-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+
+    <!--To add map 2. from leaflet.js website, copy/paste this next -->
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+    <style>
+        /*To add map 4. give the map a defined height, see leaflet.js website */
+        
+        #checkinMap {
+            height: 350px;
+            margin: 8px 0px;
+        }
+    </style>
     <title>Document</title>
 </head>
 
 <body>
+    <h1>The Weather Here</h1>
+    <div>
+        <a href="/">check in</a> | <a href="/checkins">view checkins</a>
+    </div>
+
+    <!--To add map 3. create a DOM elem where the map will be places. see leaflet.js website, copy/paste this or make one-->
+    <div id="checkinMap"></div>
 
 </body>
 <script src="logs.js"></script>
