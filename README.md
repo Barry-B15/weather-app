@@ -23,6 +23,10 @@ An app to get the weather at a given place based on the Coding Train Youtude vid
 * The server or index.js before now was discontinued and relabled as selfie-index.js and a new index created
 * The corresponding index.html in the public dir was also relabled selfie-index.html and replaced with a new index.hmtl
 * I am using the 2 apis: one for coords, city, country and weather description; the other for the air quality.
+### Checkin
+* Added new folder - checkin
+* codes to show the map, checkin icons and texts on the icons
+* I can't understand why the checkins are not displaying even if I've checked the original codes over again
 
 
 
